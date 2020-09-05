@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-icon color="dark" routerLink="/home" style="font-size: 24px;" name="arrow-back-outline"></ion-icon>
+    <ion-title style="font-size: 1.2rem;padding: 0 20px;"><strong>My Bank Details</strong> </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card style="margin-bottom: 5px;">
+    <form (ngSubmit)="onsubmit()" #form="ngForm" style="text-align: center;">
+      <div>
+        <img src="./assets/addimg.png" alt="addimg" style="height: 210px;">
+      </div>
+      <ion-list lines="none">
+        <ion-item>
+          <ion-label position="floating" [ngClass]="{label:!accno.valid && accno.touched}"><strong>ACCOUNT NUMBER</strong></ion-label>
+          <ion-input type="text"
+            [clearInput]="true"
+            [(ngModel)]="t1"
+            name="accountno"
+            required 
+            #accno="ngModel"></ion-input>
+        </ion-item>
+        <ion-note color="danger" *ngIf="!accno.valid && accno.touched">Please enter the Account No.</ion-note>
+
+        <ion-item>
+          <ion-label position="floating" [ngClass]="{label:(conaccno.touched && t1!==t2)||(conaccno.touched && !conaccno.valid)}"><strong>CONFIRM ACCOUNT NUMBER</strong></ion-label>
+          <ion-input type="text" 
+          [clearInput]="true" 
+          [(ngModel)]="t2"
+          name="confirmacc" 
+          required
+          #conaccno="ngModel"></ion-input>
+        </ion-item>
+        <ion-note color="danger" *ngIf="conaccno.touched && !conaccno.valid">Please enter an Account No.</ion-note>
+        <ion-note color="danger" *ngIf="conaccno.touched && t1!==t2 && conaccno.valid">Please enter the Same Account No. given above</ion-note>
+
+        <ion-item>
+          <ion-label position="floating" [ngClass]="{label:!holder.valid && holder.touched}"><strong>ACCOUNT HOLDER'S NAME</strong></ion-label>
+          <ion-input type="text" 
+          [clearInput]="true" 
+          ngModel 
+          name="holdername" 
+          required
+          #holder="ngModel"></ion-input>
+        </ion-item>
+        <ion-note color="danger" *ngIf="!holder.valid && holder.touched">Please fill the entry</ion-note>
+
+        <ion-item>
+          <ion-label position="floating" [ngClass]="{label:!ifsc.valid && ifsc.touched}"><strong>IFSC CODE</strong></ion-label>
+          <ion-input type="text" 
+          [clearInput]="true" 
+          ngModel 
+          name="ifsc" 
+          required
+          #ifsc="ngModel"></ion-input>
+        </ion-item>
+        <ion-note color="danger" *ngIf="!ifsc.valid && ifsc.touched">Please enter the IFSC Code</ion-note>
+
+      </ion-list>
+    
+      <ion-button expand="full" 
+      color="danger" 
+      style="margin-top: 50px;margin-bottom: 20px;padding:0 40px;" 
+      type="submit"
+      [disabled]="!form.valid || t1!==t2">SUBMIT</ion-button>
+    </form>
+  </ion-card>
+
+  <ion-card style="margin-top: 10px;">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2" style="position: relative;top:25px;">
+          <ion-icon name="information-circle-outline" size="large"></ion-icon>
+        </ion-col>
+        <ion-col size="10">
+          <p>Please enter your correct bank details carefully.
+          They will be used for all refunds, margins, and bonus payments.</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,8 @@
+{
+  "name": "influencer",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,39 @@
+.campaignName {
+    font-size: 1rem;
+    // margin: 16px 0px 8px 16px;
+    color: black;
+    font-family: 'Bree Serif', serif;
+}
+
+.brandName {
+    font-family: 'Raleway', sans-serif;
+    color: rgb(36, 36, 36);
+}
+
+.spacer {
+    padding: 16px;
+    padding-bottom: 0px;
+}
+
+.campaignRemainingTime {
+    display: flex;
+    align-items: center;
+    // font-size: 1.2rem;
+    // margin: 0px 0px 0px 16px;
+    color: black;
+    position: relative;
+}
+
+.campaignRemainingTime ion-icon {
+    color: #097a05;
+    margin-right: 4px;
+    font-size: 1rem;
+}
+
+.campaignRemainingTime img {
+    // font-size: 1.2rem;
+    width: 2rem;
+    position: absolute;
+    right: 0px;
+    margin-right: 16px;
+}

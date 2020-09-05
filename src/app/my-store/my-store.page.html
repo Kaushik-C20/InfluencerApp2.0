@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <!-- <img src="assets/logo.png" style="height:20px" alt=""> -->
+    <ion-title>My Store</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <!-- when no endorsements -->
+  <!-- <div *ngIf="earn.length === 0"> -->
+
+
+
+  <ion-card *ngFor="let campaign of endorsedCampaigns;let i=index">
+    <img style="width: 100%;" src="{{ campaign.cover_image}}">
+    <!-- <img style="width: 100%;" src=""> -->
+    <div class="spacer">
+      <div class="campaignName">
+        {{campaign.name}}
+
+      </div>
+      <p class="brandName"> {{campaign.brand_name}}</p>
+
+
+
+
+
+      <div class="campaignRemainingTime">
+        <!-- <ion-icon name="hourglass-outline"></ion-icon> -->
+        <ion-icon name="calendar-outline"></ion-icon>
+        <p style="margin:0px">
+          Ends {{campaign.timeRemaining}}
+        </p>
+
+        <img src="assets/{{campaign.platform}}.jpeg">
+
+
+      </div>
+      <br>
+
+    </div>
+    <div style="padding:0px 16px">
+      <ion-button (click)="view2(campaign.campaign_id)" expand="block" fill='solid'>View Deliverables</ion-button>
+    </div>
+    <ion-card-content>
+    </ion-card-content>
+  </ion-card>
+
+
+
+
+
+</ion-content>

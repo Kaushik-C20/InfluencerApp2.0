@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Deliverables</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-card
+    *ngFor="let deliverable of this.dataService.myStore.selectedEndoresedCampaign.detailed_demographic;let i=index"
+    style="padding:16px" (click)="deliverableClicked(i)">
+
+    <div class="deliverableName">
+      {{deliverable.deliverable_name}}</div>
+    <div class="deliverableStatus">
+      <ion-icon name="document-text-outline"></ion-icon>
+      Status : <span style="color: black;">{{deliverable.deliverable_status}}</span>
+      <div *ngIf="deliverable.deliverable_status=='rejected'">
+        Reason : <span style="color: red;">{{deliverable.deliverable_reject_reason}}</span>
+      </div>
+
+    </div>
+
+  </ion-card> -->
+  <ion-card style="padding:16px" *ngFor="let post of data">
+
+    <div class="deliverableName">
+      {{post.post_type}}</div>
+    <br>
+    <div class="deliverableStatus">
+      <ion-icon name="document-text-outline"></ion-icon>
+      Status : <span style="color: black;">{{post.review_status|uppercase}}</span>
+      <div *ngIf="post.review_status=='rejected' || post.review_status=='review_status'">
+        Reason : <span style="color: red;">{{post.reject_reason}}</span>
+      </div>
+
+
+
+    </div>
+    <br>
+    <ion-button expand="block" fill='solid' (click)="complete(post.id)">Complete Deliverable</ion-button>
+
+  </ion-card>
+</ion-content>

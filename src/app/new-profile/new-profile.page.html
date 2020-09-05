@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <!-- <img src="assets/logo.png" style="height:20px" alt=""> -->
+    <ion-title>Social Accounts</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="text-align: center;" [fullscreen]="true">
+  <div>
+    <div style="height: 100%;">
+      <img class="profileImage" (click)="viewProfileImage()" [src]="profilePicture" alt="profilepic" />
+
+      <!-- <img src="../../../assets/icon/Cristiano.png" alt="profilepic"> -->
+
+      <ion-card style="height: 100%;">
+        <ion-card-header class="head">
+          <ion-card-title>
+            <p class="text">{{profileName}}</p>
+
+            <p class="meLink">
+              me.wobb.in/<b>{{userName}}</b>
+              <!-- <a>
+                <ion-icon name="pencil" slot="icon-only" color="dark" class="create"></ion-icon>
+              </a> -->
+            </p>
+          </ion-card-title>
+          <!-- <ion-card-subtitle style="text-align: left;" class="text">About :
+          </ion-card-subtitle> -->
+        </ion-card-header>
+        <ion-card-content class="content">
+          <!-- <p class="text">{{description}} <span></span></p> -->
+        </ion-card-content>
+
+        <ion-toolbar class="segmentToolbar" mode="md">
+          <div style="padding: 4px;">
+            <ion-segment mode="md" value="instagram" color="danger" [(ngModel)]="platformSegment">
+              <ion-segment-button value="instagram" style="padding: 4px;">
+                <img src="assets/instagram.jpeg" style="height:2rem;margin-bottom: 4px;" alt="">Instagram
+                <!-- <ion-icon style="color: #7c39ad;" name="logo-instagram"></ion-icon>Instagram -->
+              </ion-segment-button>
+              <ion-segment-button value="youtube" disabled>
+                <img src="assets/youtube.jpeg" style="height:2rem;margin-bottom: 4px;" alt="">Youtube
+                <!-- <ion-icon style="color: red;" name="logo-youtube"></ion-icon>
+                Youtube -->
+              </ion-segment-button>
+            </ion-segment>
+          </div>
+        </ion-toolbar>
+      </ion-card>
+      <div [ngSwitch]="platformSegment" mode="md">
+        <div *ngSwitchCase="'instagram'">
+          <!-- <div *ngIf="!gigs.length">
+            <img
+              src="assets/noGigs.png"
+              style="width: 60%; margin-top: -3rem;"
+              alt=""
+            />
+            <p
+              style="font-size: 1.2rem; margin: 0px; color: rgb(104, 104, 104);"
+            >
+              No Gig Found
+            </p>
+          </div> -->
+
+          <ion-card *ngFor="let gig of gigs">
+            <ion-card-header>
+              <ion-card-subtitle>{{gig.title}}</ion-card-subtitle>
+              <ion-card-title>{{gig.type |titlecase }}</ion-card-title>
+            </ion-card-header>
+
+            <ion-item>
+              <ion-icon name="hourglass-outline" slot="start"></ion-icon>
+              <ion-label>Duration : {{gig.duration}} minutes</ion-label>
+              <!-- <ion-button fill="outline" slot="end">View</ion-button> -->
+            </ion-item>
+            <ion-item>
+              <ion-icon name="time-outline" slot="start"></ion-icon>
+              <ion-label>Slots : {{gig.availableSlots}}</ion-label>
+              <!-- <ion-button fill="outline" slot="end">View</ion-button> -->
+            </ion-item>
+            <ion-item>
+              <ion-icon name="wallet-outline" slot="start"></ion-icon>
+              <ion-label>Cost : {{gig.cost}} &#8377;</ion-label>
+              <!-- <ion-button fill="outline" slot="end">View</ion-button> -->
+            </ion-item>
+            <ion-card-content>
+              {{gig.description}}
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div>
+    <ion-button class="insta1" size="medium" color="danger" shape="round" (click)="connectInstagram()">Connect To
+      Instagram
+    </ion-button>
+  </div>
+  <div>
+    <ion-button *ngIf="!instagramConnected" class="insta1" size="medium" color="danger" shape="round"
+      (click)="connectInstagram()">Connect To
+      Instagram
+    </ion-button>
+  </div> -->
+</ion-content>
+<ion-footer>
+
+  <div style="padding: 0px 16px;">
+    <ion-button class="instagram" *ngIf="!instagramConnected" expand="block" size="medium" (click)="connectInstagram()">
+      <ion-icon slot="start" name="logo-instagram"></ion-icon>
+      Connect Instagram
+    </ion-button>
+  </div>
+
+  <div style="padding: 0px 16px;">
+    <ion-button class="instagram" *ngIf="instagramConnected" expand="block" size="medium" routerLink="/create-gig">
+      <ion-icon slot="start" name="color-wand"></ion-icon>
+      Create A Gig
+    </ion-button>
+  </div>
+  <!-- <ion-button *ngIf="instagramConnected" expand="block" size="medium" color="danger" shape="round"
+    routerLink="/create-gig">
+    Create A Gig
+  </ion-button> -->
+</ion-footer>

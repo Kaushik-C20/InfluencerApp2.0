@@ -1,0 +1,183 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="this.userDetailsService.data">
+    <ion-card mode="ios" style="padding: 16px;">
+      <div class="sectionHeading">
+        Wallet Balance
+      </div>
+      <!-- <div style="display: flex;align-items: flex-start;">
+    
+
+      <span class="amount">&#8377; 1499 /-</span>
+
+
+      <span>
+
+        &nbsp;
+
+        <ion-button mode='md' size='small' shape='round'>Withdraw</ion-button>
+      </span>
+    </div> -->
+      <div>
+        <!-- <span style='float:left; background-color:red'>a</span> -->
+        <!-- <span style="display: block; background-color:green;">b</span> -->
+
+        <span style="float: left;" class="amount">&#8377; {{this.userDetailsService.data.walletBalance}} /-</span>
+
+        <span style="display: block; text-align: right;">
+          &nbsp;
+
+          <!-- <ion-button mode="md" size="small" shape="round">Withdraw</ion-button> -->
+        </span>
+      </div>
+      <!-- <br />
+      <ion-button mode="md" expand="block" fill="clear" shape="round">Previous Transactions</ion-button> -->
+    </ion-card>
+    <ion-card mode="ios" style="padding: 16px;">
+      <div class="">
+        <span class="sectionHeading">
+          Bank Details
+        </span>
+      </div>
+      <div class="fontBree">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Account Number</label>
+          <input [disabled]="!bankCanEdit" type="email"
+            [(ngModel)]="this.userDetailsService.data.bankDetails.account_number" class="form-control"
+            id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">IFSC Code</label>
+          <input [disabled]="!bankCanEdit" type="email" [(ngModel)]="this.userDetailsService.data.bankDetails.ifsc"
+            class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Bank Name</label>
+          <input [disabled]="!bankCanEdit" type="email" [(ngModel)]="this.userDetailsService.data.bankDetails.bank_name"
+            class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" />
+          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+        </div>
+
+        <ion-button mode="md" expand="block" *ngIf="bankCanEdit" (click)="saveBankDetails()">
+          <ion-icon slot="start" name="create-outline"></ion-icon> Save Details
+        </ion-button>
+        <ion-button mode="md" expand="block" *ngIf="!bankCanEdit" (click)="updateBankDetails()">
+          <ion-icon slot="start" name="create-outline"></ion-icon> Update
+          Details
+        </ion-button>
+      </div>
+    </ion-card>
+    <ion-card mode="ios" style="padding: 16px;">
+      <div class="sectionHeading">
+        Social Accounts
+      </div>
+
+      <div class="fontBree">
+        <ion-item lines="none" *ngIf="this.userDetailsService.data.instagram">
+          <ion-avatar slot="start">
+            <img src="{{this.userDetailsService.data.instagram.profileImage}}" />
+          </ion-avatar>
+          <ion-label>
+            <h2>@{{this.userDetailsService.data.instagram.social_name}}</h2>
+            <h3>
+              <b> Followers </b> :
+              {{this.userDetailsService.data.instagram.followers}} followers
+            </h3>
+            <h3>
+              <b> Engagement </b> :
+              {{this.userDetailsService.data.instagram.engagement}} %
+            </h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-button *ngIf="!this.userDetailsService.data.instagram" mode="md" class="instagram" expand="block"
+          size="medium" (click)="this.userDetailsService.connectInstagram()">
+          <ion-icon slot="start" name="logo-instagram"></ion-icon>
+          Connect Instagram
+        </ion-button>
+        <!-- <ion-button disabled mode='md' class="instagram" expand="block" size="medium">
+          
+          <ion-icon slot="start" name="logo-youtube"></ion-icon>
+          Connect Youtube
+        </ion-button> -->
+      </div>
+    </ion-card>
+
+    <ion-card mode="ios" style="padding: 16px;">
+      <div class="sectionHeading">
+        Basic Profile Details
+      </div>
+
+      <p><b>Gender </b>: {{userDetailsService.data.gender |titlecase}}</p>
+      <p>
+        <b>Interests </b>:
+        <span *ngFor="let interest of userDetailsService.data.namedInterests;let i=index">
+          {{interest|titlecase}}
+          <span *ngIf="i<userDetailsService.data.namedInterests.length-1">,</span>
+        </span>
+      </p>
+      <p>
+        <b>Language </b>:
+        <span *ngFor="let language of userDetailsService.data.languages;let i=index">
+          {{language |titlecase}}
+          <span *ngIf="i<userDetailsService.data.languages.length-1">,</span></span>
+      </p>
+      <p>
+        <b>Location </b>:
+        <span>{{userDetailsService.data.location.city}},
+          {{userDetailsService.data.location.state}},
+          {{userDetailsService.data.location.country}}
+        </span>
+      </p>
+
+      <ion-button mode="md" expand="block" size="medium" (click)="updateProfileDetails()">
+        <!-- <img src="assets/instagram.jpeg" st alt=""> -->
+        <ion-icon slot="start" name="create-outline"></ion-icon>
+
+        Update Details
+      </ion-button>
+    </ion-card>
+
+    <ion-card mode="ios" style="padding: 16px;">
+      <div class="sectionHeading">
+        About Us
+      </div>
+      <div class="fontBree">
+        <ion-list>
+          <ion-item (click)="terms()">
+            <ion-icon slot="start" name="document-outline"></ion-icon>
+
+            <ion-label>Terms & Conditions</ion-label>
+          </ion-item>
+          <ion-item (click)="privacyPolicy()">
+            <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+
+            <ion-label>Privacy Policy</ion-label>
+          </ion-item>
+          <ion-item (click)="contactUs()">
+            <ion-icon slot="start" name="call-outline"></ion-icon>
+
+            <ion-label>Contact us</ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-card>
+    <ion-card mode="ios" style="padding: 16px;">
+      <!-- <div class="sectionHeading">
+      Connect Social Accounts
+
+    </div> -->
+      <div class="fontBree">
+        <ion-button (click)="this.dataService.logout()" mode="md" class="instagram" expand="block" size="medium">
+          <ion-icon slot="start" name="exit-outline"></ion-icon>
+          Logout me
+        </ion-button>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>

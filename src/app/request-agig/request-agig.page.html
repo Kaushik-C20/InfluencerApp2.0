@@ -1,0 +1,74 @@
+<ion-content style="text-align: center;" [fullscreen]="true">
+  <div *ngIf="!profileFound">NOT FOUND SHOW 404 IMAGE( ADD IT ) OR REDIRECT TO WOBB.IN</div>
+
+  <div *ngIf="profileFound">
+    <div>
+      <div style="height: 100%;">
+        <img class="profileImage" [src]="profilePicture" alt="profilepic" />
+
+        <!-- <img src="../../../assets/icon/Cristiano.png" alt="profilepic"> -->
+
+        <ion-card style="height: 100%;">
+          <ion-card-header class="head">
+            <ion-card-title>
+              <p class="text">{{profileName}}</p>
+
+              <p class="text">me.wobb.in/<b>{{userName}}</b></p>
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </div>
+    </div>
+    <!-- <ion-card *ngFor="let gig of gigs"> -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Video</ion-card-subtitle>
+        <ion-card-title>Live 1 to 1 Session</ion-card-title>
+      </ion-card-header>
+
+      <ion-item>
+        <ion-icon name="hourglass-outline" slot="start"></ion-icon>
+        <ion-label>Duration : 45 minutes</ion-label>
+      </ion-item>
+      <!-- <ion-item>
+      <ion-icon name="time-outline" slot="start"></ion-icon>
+      <ion-label>Slots : 22</ion-label>
+    </ion-item> -->
+      <ion-item>
+        <ion-icon name="wallet-outline" slot="start"></ion-icon>
+        <ion-label>Cost : 300 &#8377;</ion-label>
+      </ion-item>
+      <ion-card-content>
+        A live 1 to 1 Session for all your fitness questions/queries. A video call
+        will be arranged over JioMeet !
+      </ion-card-content>
+      <ion-button mode='md' (click)="presentActionSheet()" expand="block">Request Gig
+      </ion-button>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Video</ion-card-subtitle>
+        <ion-card-title>Live 1 to 1 Session</ion-card-title>
+      </ion-card-header>
+
+      <ion-item>
+        <ion-icon name="hourglass-outline" slot="start"></ion-icon>
+        <ion-label>Duration : 45 minutes</ion-label>
+      </ion-item>
+      <!-- <ion-item>
+      <ion-icon name="time-outline" slot="start"></ion-icon>
+      <ion-label>Slots : 22</ion-label>
+    </ion-item> -->
+      <ion-item>
+        <ion-icon name="wallet-outline" slot="start"></ion-icon>
+        <ion-label>Cost : 300 &#8377;</ion-label>
+      </ion-item>
+      <ion-card-content>
+        A live 1 to 1 Session for all your fitness questions/queries. A video call
+        will be arranged over JioMeet !
+      </ion-card-content>
+      <ion-button mode='md' (click)="presentActionSheet()" expand="block">Request Gig
+      </ion-button>
+    </ion-card>
+  </div>
+</ion-content>

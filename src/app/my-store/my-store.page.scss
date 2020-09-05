@@ -1,0 +1,67 @@
+.campaignName {
+    font-size: 1rem;
+    // margin: 16px 0px 8px 16px;
+    color: black;
+    font-family: 'Bree Serif', serif;
+}
+
+.brandName {
+    font-family: 'Raleway', sans-serif;
+    color: rgb(36, 36, 36);
+}
+
+.spacer {
+    padding: 16px;
+    padding-bottom: 0px;
+}
+
+.campaignRemainingTime {
+    display: flex;
+    align-items: center;
+    // font-size: 1.2rem;
+    // margin: 0px 0px 0px 16px;
+    color: black;
+    position: relative;
+}
+
+.campaignRemainingTime ion-icon {
+    color: #2E6D36;
+    margin-right: 4px;
+    font-size: 1rem;
+}
+
+.campaignRemainingTime img {
+    // font-size: 1.2rem;
+    width: 2rem;
+    position: absolute;
+    right: 0px;
+    margin-right: 16px;
+}
+
+// .img1{
+//     border: 1px solid black;
+//     border-radius: 100%;
+//     height: 100px;
+// }
+// .c1 p{
+//     padding-left: 10px;
+//     font-size: 1rem;
+//     margin-top: 5px;
+//     margin-bottom: 0;
+//     color: black;
+// }
+// .c2{
+//     padding-top: 0;
+//     margin-top: 0;
+//     padding-left: 0;
+//     margin-left: 0;
+// }
+// .c2 ion-card-title{
+//     font-size: 0.91rem;
+// }
+// .c3{
+//     margin-top: 1px;
+//     padding-top: 0;
+//     padding-left: 0;
+//     margin-left: 0;
+// }

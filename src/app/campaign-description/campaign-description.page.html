@@ -1,0 +1,163 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Campaign Description</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()" color="primary">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen style="text-align: center;">
+  <!-- <div style="background-color: honeydew;"> -->
+  <!-- <img src='https://dashboard.wobb.in/assets/icon-20@3x.png' style="width: 60px;" /> -->
+  <!-- <div style="background-image: url('https://dashboard.wobb.in/assets/icon-20@3x.png');background-size: 160px;background-repeat:no-repeat;background-position: center;opacity: 0.5;"> -->
+  <div class="background">
+    <h3 style="font-size: 1.5rem;"><strong>{{ curr_camp['name'] }}</strong></h3>
+    <h3 style="font-size: 1rem;"><strong>By</strong></h3>
+    <h3 style="font-size: 1.5rem;"><strong>{{ curr_camp['brand_name'] }}</strong></h3>
+  </div>
+
+  <ion-card mode="md" style="text-align: center;margin-top: 25px;margin-bottom: 25px;" color="danger">
+    <ion-card-header style="padding-top: 0;padding-bottom: 0;">
+      <ion-chip color="light" mode="md">
+        <ion-label style="font-size: large;font-weight: 700;" color="light"><strong>Brief to the Creator</strong>
+        </ion-label>
+      </ion-chip>
+    </ion-card-header>
+
+    <ion-card-content
+      style="text-align: center;font-size: large;padding-top: 10px;padding-bottom: 10px;background-color: white;color: black;">
+      {{ curr_camp['creator_brief'] }}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card mode='md' style="text-align: center;margin-top: 15px;margin-bottom: 25px;" color="danger">
+    <ion-card-header style="padding-top: 0;padding-bottom: 0;">
+      <ion-chip color="light" mode="md">
+        <ion-label style="font-size: large;font-weight: 700;" color="light"><strong>Brand Overview</strong></ion-label>
+      </ion-chip>
+    </ion-card-header>
+
+    <ion-card-content
+      style="text-align: center;font-size: large;padding-top: 10px;padding-bottom: 10px;background-color: white;color: black;">
+      {{ curr_camp['brand_overview'] }}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card mode="md" style="text-align: center;margin-top: 25px;margin-bottom: 25px;" color="danger">
+    <ion-chip color="light" mode="md">
+      <ion-icon name="calendar-outline" size='medium' color='light'></ion-icon>
+      <ion-label style="font-size: large;font-weight: 700;" color="light"><strong>Campaign Dates</strong></ion-label>
+    </ion-chip>
+
+    <ion-list>
+      <ion-item-sliding>
+        <ion-item style="text-align: center;">
+          <ion-icon name="return-down-forward-outline" size='large' color='danger'></ion-icon>
+          <ion-label style="font-size: large;position: relative;right: 10px;">
+            Registration End-Date
+            <p>(swipe left to see the Date)</p>
+          </ion-label>
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option color="danger">
+            Registration End-Date : {{ curr_camp['registration_end_date'] }}
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+      <ion-item style="text-align: center;">
+        <ion-icon name="return-down-forward-outline" size='large' color='danger'></ion-icon>
+        <ion-label style="font-size: large;position: relative;right: 10px;">
+          Starts on {{ curr_camp['start_date'] }}
+        </ion-label>
+      </ion-item>
+
+      <ion-item style="text-align: center;">
+        <ion-icon name="return-down-forward-outline" size='large' color='danger'></ion-icon>
+        <ion-label style="font-size: large;position: relative;right: 10px;">
+          Ends on {{ curr_camp['end_date'] }}
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-card mode='md' style="text-align: center;margin-top: 15px;margin-bottom: 25px;" color="danger"
+    *ngIf="curr_camp['barter']=='YES' || curr_camp['barter_min_price']">
+
+    <ion-chip color="light" mode="md">
+      <!-- <ion-icon name="card-outline" size='medium' color='light'></ion-icon>  -->
+      <ion-label style="font-size: large;font-weight: 700;" color="light"><strong>Barter Details</strong></ion-label>
+    </ion-chip>
+
+    <ion-list>
+      <ion-item>
+        <ion-icon name="pricetag-outline" size='large' color='primary' style="margin-right: 15px;"></ion-icon>
+        <ion-label style="font-size: large;" color="dark">
+          Barter Min Price: &#8377;{{ curr_camp['barter_min_price'] }}
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="pricetag-outline" size='large' color='primary' style="margin-right: 15px;"></ion-icon>
+        <ion-label style="font-size: large;" color="dark">
+          Barter Max Price: &#8377;{{ curr_camp['barter_max_price'] }}
+        </ion-label>
+      </ion-item>
+      <ion-item *ngIf="curr_camp['barter_earning']">
+        <ion-icon name="pricetags-outline" size='large' color='primary' style="margin-right: 15px;"></ion-icon>
+        <ion-label style="font-size: large;" color="dark">
+          Barter Earning : &#8377;{{ curr_camp['barter_earning'] }}
+        </ion-label>
+      </ion-item>
+      <div *ngIf="(curr_camp['barter_purchase_link']) && (toggleLink===true)"
+        style="margin-left: 17px;margin-right: 17px;">
+        <ion-button color="danger" (click)="Toggle()" shape='round' class="togglebtn">
+          <ion-icon name="eye-off-outline" size="medium" color='light'></ion-icon>
+        </ion-button>
+        <h5 style="color: rgb(49, 49, 49);margin-top: 15px;margin-bottom: 10px;font-size: large;"><strong>Purchase-Link :
+          </strong></h5>
+        <h6 style="color: black;margin-top: 0;margin-bottom: 5px;">{{curr_camp['barter_purchase_link']}}</h6>
+      </div>
+      <ion-item-sliding *ngIf="(curr_camp['barter_purchase_link']) && (toggleLink===false)">
+        <ion-item style="margin-bottom: 0;padding-bottom: 0;" href="{{curr_camp['barter_purchase_link']}}"
+          target="_blank">
+          <ion-icon name="link-outline" size='large' color='primary' style="margin-right: 15px;"></ion-icon>
+          <ion-label style="font-size: large;" color="dark">
+            Purchase-Link :
+            <p style="font-size: small;" color='dark'>(swipe left to see the link</p>
+            <p style="font-size: small;" color='dark'>or click here to open it)</p>
+          </ion-label>
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option color="danger" (click)="Toggle()">
+            <ion-icon name="eye-outline" size='large' color='light'></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-card>
+
+  <ion-card mode='md' style="text-align: left;margin-top: 15px;margin-bottom: 10px;">
+    <ion-item lines='none'>
+      <ion-label style="font-size: large;font-weight: 700;" color="dark"><strong>Content :
+          {{ curr_camp['content']=='generated'?'Influencer generated':'Precreated Content' }}</strong></ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-card mode='md' style="text-align: left;margin-top: 10px;margin-bottom: 10px;">
+    <ion-item lines='none'>
+      <!-- <ion-icon name="phone-portrait-outline" size='medium' color='dark' style="margin-right: 10px;"></ion-icon> -->
+      <ion-label style="font-size: large;font-weight: 700;" color="dark"><strong>Platform :
+          {{ curr_camp['platform']|titlecase }}</strong></ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-card mode='md' style="text-align: left;margin-top: 10px;margin-bottom: 30px;">
+    <ion-item lines='none'>
+      <ion-icon name="construct-outline" size="medium" color='dark' style="margin-right: 5px;"></ion-icon>
+      <ion-label style="font-size: large;font-weight: 700;" color="dark"><strong>Store Visit
+          {{ curr_camp['store_visit']=='0'?'not required':'required' }}</strong></ion-label>
+    </ion-item>
+  </ion-card>
+  <!-- </div> -->
+</ion-content>

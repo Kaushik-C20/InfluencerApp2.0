@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Update Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="this.userDetailsService.data">
+    <ion-card mode="ios" style="padding:16px">
+
+
+
+      <div class="">
+        <span class="sectionHeading">
+          Update Your City :
+        </span>
+
+      </div>
+      <div class="fontBree">
+        <br>
+        <input style="margin-top: 4px;width:100%;" ngx-google-places-autocomplete [options]='options'
+          #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" placeholder="Enter City" />
+        <br>
+        <br>
+        <div>
+          <p>City : {{this.userDetailsService.data.location.city || 'Not Specified'}}</p>
+          <p>State : {{this.userDetailsService.data.location.state || 'Not Specified'}}</p>
+          <p>Country : {{this.userDetailsService.data.location.country ||'Not Specified'}}</p>
+        </div>
+
+
+      </div>
+
+    </ion-card>
+
+    <ion-card mode="ios" style="padding:16px">
+
+
+      <div class="">
+        <span class="sectionHeading">
+          Select Your Gender :
+        </span>
+
+      </div>
+      <div class="fontBree">
+        <br>
+        <ion-select placeholder="Gender" mode='md' [(ngModel)]="this.userDetailsService.data.gender">
+
+          <ion-select-option value="male">Male</ion-select-option>
+          <ion-select-option value="female">Female</ion-select-option>
+          <ion-select-option value="other">Other</ion-select-option>
+
+        </ion-select>
+
+      </div>
+
+    </ion-card>
+
+    <ion-card mode="ios" style="padding:16px">
+
+
+      <div class="">
+        <span class="sectionHeading">
+          Update Your Languages :
+        </span>
+
+      </div>
+      <div class="fontBree">
+        <br>
+        <ion-select multiple placeholder="Add Language" mode='md' [(ngModel)]="this.userDetailsService.data.languages">
+          <ion-select-option *ngFor="let language of this.userDetailsService.data.allLanguages"
+            value="{{language.name}}">
+            {{language.name |titlecase}}</ion-select-option>
+
+        </ion-select>
+
+      </div>
+
+    </ion-card>
+    <ion-card mode="ios" style="padding:16px">
+
+
+      <div class="">
+        <span class="sectionHeading">
+          Update Your Interests :
+        </span>
+
+      </div>
+      <div class="fontBree">
+        <br>
+        <ion-button (click)="addInterest()" expand="block" fill='clear'>Select Eligible Interests</ion-button>
+
+        <!-- <ion-select (click)="addInterest()" multiple placeholder="Add Language" mode='md'
+          [(ngModel)]="this.userDetailsService.data.interests">
+
+
+
+          <ion-select-option *ngFor="let interest of this.userDetailsService.data.allInterests"
+            value="{{interest.name}}">
+            {{interest.name |titlecase}}</ion-select-option>
+
+        </ion-select> -->
+
+      </div>
+
+    </ion-card>
+
+
+
+
+    <div *ngIf="this.userDetailsService.flowFromLogin">
+      <!-- <ion-button (click)="connectInstagram()" expand="block" fill='solid'>Connect Your Instagram</ion-button> -->
+      <ion-button (click)="update(true)" expand="block" fill='solid'>Update & Connect Instagram</ion-button>
+      <ion-button (click)="skip()" expand="block" fill='clear'>skip and continue</ion-button>
+
+    </div>
+    <div *ngIf="!this.userDetailsService.flowFromLogin">
+      <ion-button (click)="update(false)" expand="block" fill='solid'>Update Details</ion-button>
+
+    </div>
+
+  </div>
+</ion-content>

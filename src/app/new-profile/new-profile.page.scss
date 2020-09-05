@@ -1,0 +1,104 @@
+.profileImage {
+    border-radius: 100%;
+    width: 6rem;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.btn1 {
+    position: relative;
+    left: 39.1%;
+    z-index: 1;
+}
+
+ion-card {
+    margin-top: 0;
+    padding-top: 0;
+    position: relative;
+    bottom: 3rem;
+    z-index: 0;
+}
+
+.head {
+    margin-top: 50px;
+    padding-top: 0px;
+    text-align: center;
+}
+
+.create {
+    margin-left: 8px;
+}
+
+.settings {
+    position: relative;
+    z-index: 1;
+    left: 50%;
+
+}
+
+.content {
+    margin-left: 60px;
+    margin-top: -35px;
+    text-align: left;
+    color: black;
+}
+
+.creates {
+
+    margin-left: 8px;
+    float: right;
+}
+
+.media_button {
+    margin-top: 30%;
+    width: 100%;
+
+}
+
+.insta2 {
+    width: 90%;
+    position: fixed;
+    left: 0;
+    // bottom: 10px;
+    right: 0;
+    display: block;
+    margin: auto;
+}
+
+.insta1 {
+    width: 90%;
+    position: fixed;
+    left: 0;
+    // bottom: 70px;
+    right: 0;
+    display: block;
+    margin: auto;
+}
+
+.text {
+    font-size: medium;
+    color: black;
+}
+
+.instagram {
+
+    color: #fff;
+
+    // background: #d6249f;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    // box-shadow: 0px 3px 10px rgba(0, 0, 0, .25);
+}
+
+.segmentToolbar {
+    --background: white;
+
+}
+
+.meLink {
+    font-family: 'Raleway', sans-serif;
+    font-size: medium;
+    // color: rgb(36, 36, 36);
+}

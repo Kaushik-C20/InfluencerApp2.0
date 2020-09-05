@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Select Interest</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-list>
+    <div *ngFor="let parent of this.userDetails.data.allInterests">
+
+      <ion-list-header>
+        <ion-label style="color:#D81B60">{{parent.name |uppercase}}</ion-label>
+
+      </ion-list-header>
+      <ion-item *ngFor="let child of parent.children">
+
+        <ion-label>{{child.name}}</ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="child.isChecked"></ion-checkbox>
+      </ion-item>
+
+    </div>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-button (click)="select()" expand="block" fill='solid'>Confirm Interests</ion-button>
+
+</ion-footer>

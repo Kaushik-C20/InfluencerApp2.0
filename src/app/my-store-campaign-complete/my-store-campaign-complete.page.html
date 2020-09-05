@@ -1,0 +1,218 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Complete Step {{step}} </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="data!=undefined">
+    <ion-card mode="ios" style="padding: 16px;" *ngIf="data.subCampaignData.mapping_creator_instructions=='1'">
+      <div class="sectionHeading">
+        Instructions :
+      </div>
+      <p class="instructions" style="margin: 0px;" *ngFor="let instruction of data.masterInstructionsData;let i=index">
+        {{i+1}}. {{instruction.instruction}}
+      </p>
+
+    </ion-card>
+    <ion-card mode="ios" style="padding: 16px;" *ngIf="data.subCampaignData.creator_instructions">
+      <div class="sectionHeading">
+        Creator Guidelines :
+      </div>
+      <p class="instructions" style="margin: 0px;">
+        {{data.subCampaignData.creator_instructions}}
+      </p>
+
+    </ion-card>
+    <ion-card mode="ios" style="padding: 16px;">
+      <div class="sectionHeading">
+        Influencer Resources :
+      </div>
+
+
+      <div class="instructions" style="margin: 0px;">
+
+
+        <div *ngFor="let image of data.imagesData;let i=index">
+
+          <ion-button (click)="viewResouce(image.value)" fill="clear" mode="md"> Campaign Image {{i+1}}
+          </ion-button>
+
+        </div>
+        <div *ngFor="let video of data.videosData;let i=index">
+
+          <ion-button (click)="viewResouce(video.value)" fill="clear" mode="md"> Campaign Video {{i+1}}
+          </ion-button>
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+      <!-- <ion-button (click)="viewResouce()" fill="clear" mode="md"> View Image
+        </ion-button> -->
+
+
+
+      <!-- Some Caption Along with Hashtags #Hashtag1 #Hashtag2 -->
+      <!-- <img src="assets/dummyProduct.jpeg" style="height: 4rem;" alt="" />
+        &nbsp;
+        <img src="assets/dummyProduct.jpeg" style="height: 4rem;" alt="" />
+        &nbsp;
+        <img src="assets/dummyProduct.jpeg" style="height: 4rem;" alt="" /> -->
+
+    </ion-card>
+    <ion-card mode="ios" style="padding: 16px;">
+      <div class="sectionHeading">
+        Tag / Hashtags :
+      </div>
+      <p class="instructions" style="margin: 0px;">
+
+        <span *ngFor="let hashtag of data.hashtagData">#{{hashtag.hashtag}} </span>
+        <span *ngFor="let tag of data.tagData">@{{tag.tag}} </span>
+
+        <ion-button (click)="copy()" size="block" fill="clear" mode="md">Copy To Clipboard
+        </ion-button>
+      </p>
+    </ion-card>
+    <ion-card mode="ios" style="padding: 16px;">
+      <div class="sectionHeading">
+        Redirection URL :
+      </div>
+      <p>{{data.postData.redirect_link}}</p>
+
+    </ion-card>
+    <ion-card mode="ios" style="padding: 16px;" *ngIf="step==1">
+      <div class="sectionHeading">
+        Deliverable Approval :
+      </div>
+
+      <ion-button fill="clear" mode="md" (click)="sampleFileInput.click()">
+        {{this.file==undefined?'Upload Sample Post':'Change Sample Post'}}</ion-button>
+      <p *ngIf="this.file!=undefined"> {{file.name}}</p>
+      <input style="display: none" type="file" (change)="sampleFileSelected($event)" #sampleFileInput>
+
+      <!-- <ion-item>
+        <ion-input placeholder="https://www.instagram.com/p/CDVbVNtHUyu..."></ion-input>
+      </ion-item> -->
+
+
+      <ion-button expand="block" fill="solid" mode="md" [disabled]='!stepCanComplete' (click)="forApproval()">
+        {{stepCanComplete?'Get Approval':'Waiting for Approval'}}</ion-button>
+
+    </ion-card>
+    <ion-card mode="ios" style="padding: 16px;" *ngIf="step==2">
+      <div class="sectionHeading">
+        Deliverable Proof :
+      </div>
+
+
+
+      <!-- *For stories, take screenshot after 24 hours. -->
+      <ion-button (click)="proofFileInput.click()" fill="clear" mode="md">
+        {{this.file==undefined?'Upload Proof Screenshot':'Change Proof Screenshot'}}</ion-button>
+      <p *ngIf="this.file!=undefined"> {{file.name}}</p>
+      <input style="display: none" type="file" (change)="proofFileSelected($event)" #proofFileInput>
+      <ion-item>
+        <ion-label position="floating">Paste Post Link</ion-label>
+
+        <ion-input [(ngModel)]="postLink" placeholder="https://www.instagram.com/p/CDVbVNtHUyu..."></ion-input>
+      </ion-item>
+
+
+      <ion-button expand="block" fill="solid" mode="md" [disabled]='!stepCanComplete' (click)="forPostApproval()">
+        {{stepCanComplete?'Submit Proof':'Waiting for Approval'}} </ion-button>
+
+
+
+
+    </ion-card>
+    <ion-card mode="ios" style="padding: 16px;" *ngIf="step==2 && stepCanComplete">
+      <div class="sectionHeading">
+        Go To Instagram :
+      </div>
+
+      <ion-button expand="block" fill="solid" (click)="openInstagram()" mode='md'>Open Instagram</ion-button>
+
+
+
+    </ion-card>
+
+    <!-- <ion-card mode="ios" style="padding: 16px;" *ngIf="this.dataService.delStepNumber==1">
+      <div class="sectionHeading">
+        Upload File for Approval :
+      </div>
+
+      <input type="file" id="myFile" name="filename" />
+    </ion-card>
+    <ion-card mode="ios" style="padding: 16px;" *ngIf="this.dataService.delStepNumber==2">
+      <div class="sectionHeading">
+        Post To Instagram :
+      </div>
+
+      <p>
+        Caption , hastags & Images are added automatically. Else do it manually if
+        no resources are provided.
+      </p>
+      <ion-button *ngIf="this.dataService.delStepNumber==2" (click)="post()" expand="block" fill="solid" mode="md">Open
+        Instagram App
+      </ion-button>
+    </ion-card>
+    <ion-card mode="ios" style="padding: 16px;" *ngIf="this.dataService.delStepNumber==2">
+      <div class="sectionHeading">
+        Enter Post / Deliverable Link :
+      </div>
+      <ion-item>
+        <ion-input placeholder="https://www.instagram.com/p/CDVbVNtHUyu..."></ion-input>
+      </ion-item>
+      <input type="file" id="myFile" name="filename">
+      <ion-button expand="block" fill="solid" mode="md">Submit Proof</ion-button>
+    </ion-card> -->
+
+    <!-- <div style="margin:16px">
+    <div *ngIf="campaignDetails">
+      <h5>Instructions :</h5>
+      <p style="margin:0px" *ngFor="let instruction of campaignDetails.mapping_creator_instructions;let i=index">
+
+        {{i+1}} . {{instruction}}
+
+      </p>
+
+    </div>
+
+
+
+    <div *ngIf="step==1 && campaignDetails!=undefined">
+
+
+
+
+
+
+      <h4>Upload File for Approval :</h4>
+
+      <input type="file" id="myFile" name="filename">
+    </div>
+    <div *ngIf="step==2 &&campaignDetails!=undefined">
+      <h5>Enter Post / Deliverable Link :</h5>
+
+      <ion-item>
+        <ion-input placeholder='https://www.instagram.com/p/CDVbVNtHUyu...'></ion-input>
+      </ion-item>
+
+    </div>
+  </div> -->
+  </div>
+</ion-content>
+<!-- <ion-footer>
+  
+  
+</ion-footer> -->

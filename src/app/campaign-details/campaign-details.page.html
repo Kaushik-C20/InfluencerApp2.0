@@ -1,0 +1,226 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <!-- <img src="assets/logo.png" style="height:20px" alt=""> -->
+    <ion-title>Campaign Details</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <div *ngIf="campaignDetailsData!=undefined">
+    <!-- <ion-header>
+    <ion-toolbar mode='ios'>
+      <ion-icon routerLink="/tabs/home" color="danger" style="font-size: 22px;" name="arrow-back-outline"></ion-icon>
+      <ion-title><strong>{{campaignDetailsData['brand_name']}}</strong></ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+
+    <!-- danger:#eb445a -->
+
+    <ion-card mode="ios">
+      <img style="width: 100%;"
+        src="{{ campaignDetailsData.cover_image?campaignDetailsData.cover_image:'./assets/sampleImage.jpg' }}">
+      <div>
+
+
+        <div style="padding:16px">
+
+          <div class="campaignName">
+            {{campaignDetailsData.name | uppercase}}
+            <img class="platformImage" src="assets/{{campaignDetailsData.platform}}.jpeg">
+          </div>
+
+          <div class="brandName">
+            {{campaignDetailsData.brand_name | uppercase}}
+
+
+          </div><br>
+          <!-- <div class="liner"></div> -->
+
+          <div class="sectionHeading">Details</div>
+          <span class="campaignDetailsItem">
+            <p>
+              <ion-icon class="star" name="calendar-outline"></ion-icon>
+              Start Date : {{ campaignDetailsData.start_date | date }}
+            </p>
+          </span>
+          <span class="campaignDetailsItem">
+
+            <p>
+              <ion-icon name="desktop-outline" class="buttonIcon"></ion-icon> Platform :
+              {{ campaignDetailsData.platform | titlecase }}
+            </p>
+          </span>
+          <span class="campaignDetailsItem">
+
+            <p>
+              <ion-icon name="wallet-outline" class="buttonIcon" style="position: relative;top: 1px;"></ion-icon>
+              Earning
+              :
+              &#8377; {{   campaignDetailsData.influencer_earning|number:'1.0-0'  }} /-
+            </p>
+          </span>
+
+          <span class="campaignDetailsItem">
+
+            <p>
+              <ion-icon name="camera-outline" class="buttonIcon"></ion-icon>Content :
+              {{ campaignDetailsData['content']=='generated'?'Influencer Generated':'Precreated Content' }}
+            </p>
+          </span>
+          <span class="campaignDetailsItem">
+
+            <p>
+              <ion-icon name="card-outline" class="buttonIcon"></ion-icon> Store Visit :
+              {{ campaignDetailsData['store_visit']=='0'?'Not Required':'Required' }}
+            </p>
+          </span>
+          <span class="campaignDetailsItem"
+            *ngIf="campaignDetailsData['barter']=='YES' || campaignDetailsData['barter_earning']">
+
+            <p>
+              <ion-icon name="pricetags-outline" class="buttonIcon"></ion-icon> Barter Value :
+              &#8377; {{ campaignDetailsData['barter_earning'] }}
+            </p>
+          </span>
+          <span class="campaignDetailsItem" *ngIf="campaignDetailsData['barter']=='NO'">
+
+            <p>
+              <ion-icon name="snow-outline" class="buttonIcon"></ion-icon> No Barter Provided
+            </p>
+          </span>
+          <span class="campaignDetailsItem">
+
+            <p>
+              <ion-icon class="buttonIcon" name="calendar-outline"></ion-icon> Closing Date :
+              {{ campaignDetailsData['registration_end_date'] | date }}
+            </p>
+          </span>
+
+
+        </div>
+
+      </div>
+
+    </ion-card>
+
+    <ion-card mode="ios" style="padding:16px">
+
+
+      <div class="sectionHeading">
+        <!-- Deliverables -->
+        Post Types :
+      </div>
+      <p *ngFor="let deliverable of deliverables;let i=index">
+        {{i+1 }}. {{deliverable.type}}
+
+
+      </p>
+
+
+
+
+    </ion-card>
+    <ion-card mode="ios" style="padding:16px">
+
+
+      <div class="sectionHeading">
+        Eligibility :
+      </div>
+      <p>
+        <b>Followers </b>: Minimum
+
+
+        {{campaignDetailsData.influencer_demografics.followers}}
+        follower{{campaignDetailsData.influencer_demografics.followers>1?'s':''}}
+      </p>
+      <p>
+        <b>Gender </b>: {{campaignDetailsData.influencer_demografics.gender||'Any' | titlecase}}
+      </p>
+      <p>
+        <b>Interests </b>: <span
+          *ngFor="let interest of campaignDetailsData.influencer_demografics.interests;let i=index">{{interest.name | titlecase}}
+          {{campaignDetailsData.influencer_demografics.interests.length==(i+1)?'':',' }} </span>
+      </p>
+      <p>
+        <b>Language </b>: <span
+          *ngFor="let language of campaignDetailsData.influencer_demografics.languages;let i=index">{{language.name | titlecase}}
+          {{campaignDetailsData.influencer_demografics.languages.length==(i+1)?'':',' }} </span>
+      </p>
+      <p>
+        <b>Location </b>: <span
+          *ngFor="let location of campaignDetailsData.influencer_demografics.locations;let i=index">(
+          {{location.city?location.city+" ,":""| titlecase}} {{location.state?location.state+" ,":""| titlecase}}
+
+          {{location.country| titlecase }} )
+          <!-- {{campaignDetailsData.influencer_demografics.locations.length==(i+1)?'':'|'}} -->
+        </span>
+      </p>
+      <!-- <p>
+        <b>Profession </b>: <span
+          *ngFor="let profession of campaignDetailsData.influencer_demografics.professions;let i=index">{{profession.name }}
+          {{campaignDetailsData.influencer_demografics.professions.length==(i+1)?'':','}} </span>
+      </p> -->
+      <p>
+        <b>Engagement Rate </b>: Minimum
+
+
+        {{campaignDetailsData.influencer_demografics.engagement_rate}} %
+      </p>
+
+
+
+
+    </ion-card>
+    <ion-card mode="ios" style="padding:16px"
+      *ngIf="campaignDetailsData.products && campaignDetailsData.products.length">
+
+
+      <div class="sectionHeading">
+        Products
+      </div>
+      <ion-radio-group mode='md' value="{{selectedProductId}}">
+
+        <div *ngFor="let product of products">
+
+
+          <ion-item lines='none' style="display: inline-block;">
+
+            <ion-radio style="margin-right:4px !important" slot="start" value="{{product.id}}"></ion-radio>
+          </ion-item>
+
+          <span style="display: inline-flex;align-items: center;">
+
+            <img style="height:3rem;width:3rem"
+              (click)="openLink(product.redirect_url?product.redirect_url:'https://wobb.in',product.id)"
+              src="{{ product['image']?product['image'] : './assets/dummyProduct.jpeg' }}" alt="prodimg">
+            &nbsp;
+            <ion-label (click)="openLink(product.redirect_url?product.redirect_url:'https://wobb.in',product.id)">
+              {{product.name| titlecase}}</ion-label>
+
+          </span>
+        </div>
+
+      </ion-radio-group>
+
+
+
+
+    </ion-card>
+
+
+
+
+    <ion-footer style="padding-top: 0; padding-bottom: 7px;">
+      <ion-button (click)="endorse()" expand="block" fill='solid'>Endorse Campaign</ion-button>
+      <!-- <ion-button class="endorse" style="width: 50%;margin: auto;padding-top: 7px;" color="danger" expand="full"
+        (click)="save()">Endorse
+      </ion-button> -->
+    </ion-footer>
+  </div>
+</ion-content>

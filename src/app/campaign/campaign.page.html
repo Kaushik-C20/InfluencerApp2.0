@@ -1,0 +1,107 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <!-- <img src="assets/logo.png" style="height:20px" alt=""> -->
+    <ion-title>Campaigns</ion-title>
+
+    <ion-buttons slot='end' shape="round" size="small" color="danger" fill="outline" class="channel" mode='ios'>
+
+      <ion-select [(ngModel)]="platform" (ionChange)="setFilteredCampaigns()" interface='popover' mode='md'>
+        <ion-select-option value="all"> All Campaigns</ion-select-option>
+        <ion-select-option value="youtube">Youtube Campaigns</ion-select-option>
+        <ion-select-option value="instagram">Instagram Campaigns</ion-select-option>
+
+        <ion-select-option value="eligible">Eligible Campaigns</ion-select-option>
+      </ion-select>
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-card *ngFor="let campaign of filteredCampaigns;let i=index">
+    <!-- <img  style="width: 100%;" src="{{ campaign['cover_image']?campaign['cover_image']:'./assets/sampleImage.jpg' }}"> -->
+    <img *ngIf=" campaign.cover_image" style="width: 100%;" src="{{ campaign.cover_image}}">
+    <div class="spacer">
+      <div class="campaignName">
+        {{campaign.name | uppercase}}
+
+      </div>
+      <p class="brandName"> {{campaign.brand_name}}</p>
+      <div class="campaignRemainingTime">
+        <!-- <ion-icon name="hourglass-outline"></ion-icon> -->
+        <ion-icon name="calendar-outline"></ion-icon>
+        <p style="margin:0px">
+          Ends
+          {{campaign.timeRemaining}}
+        </p>
+
+        <img src="assets/{{campaign.platform}}.jpeg">
+
+
+      </div>
+      <br>
+
+    </div>
+
+    <ion-card-content>
+      <ion-button (click)="selectCampaign(i)" expand="block" fill='solid'>View Details</ion-button>
+    </ion-card-content>
+    <!-- <ion-button style="" class="instagram" expand="block" size="medium">
+      <ion-icon slot="start" name="logo-instagram"></ion-icon>
+      Connect Instagram
+    </ion-button> -->
+  </ion-card>
+
+
+  <!-- <ion-header>
+    <ion-toolbar>
+      <ion-button routerLink="/my-store" color="danger" size="small" shape="round" class="myStore" mode='ios'>
+        My Store
+      </ion-button>
+      <ion-button shape="round" size="small" color="danger" fill="outline" class="channel" mode='ios'>
+        <ion-select value="youtube" mode="md" [(ngModel)]="platform">
+          <ion-select-option value="youtube">Youtube</ion-select-option>
+          <ion-select-option value="instagram">Instagram</ion-select-option>
+          <ion-select-option value="all">All</ion-select-option>
+          <ion-select-option value="eligible">Eligible</ion-select-option>
+        </ion-select>
+      </ion-button>
+
+    </ion-toolbar>
+  </ion-header> -->
+
+  <!-- <ion-card mode="ios" *ngFor="let campaign of campList;let i=index" (click)="store(i)" style="text-align: center;">
+    <div *ngIf="(campaign['platform']===platform)||(platform==='all')?true:false">
+      <img class="img" src="{{ campaign['cover_image']?campaign['cover_image']:'./assets/sampleImage.jpg' }}"
+        alt="Camp_Img" />
+
+      <ion-card-header style="margin-top: 15px;">
+        <ion-card-title style="margin-bottom: 2px;font-size: 1.2rem;color: grey;">{{ campaign['name'] }}
+        </ion-card-title>
+
+        {{campaign['timeRemaining']}}
+        <ion-card-title style="font-size: 1rem;margin-bottom:0;padding-bottom: 0;color: grey;"> By </ion-card-title>
+        <ion-card-title style="margin-bottom: 5px;font-size: 1.2rem;color: grey;">{{ campaign['brand_name'] }}
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        Earn ₹{{campaign['influencer_earning']?campaign['influencer_earning']: 1000}} cash price
+
+        <ion-button class="seats" size="small" color="danger" type="button" expand="full"
+          *ngIf="campaign['endorsed_by_influencer']==campaign['total_influencer']?true:false"><strong>Seats
+            full</strong></ion-button>
+
+        <ion-button class="seats" size="small" color="danger" type="button" expand="full"
+          *ngIf="campaign['endorsed_by_influencer']<=campaign['total_influencer']?true:false"><strong>Seats :
+            {{ campaign['total_influencer']?campaign['total_influencer']: 'Filling' }}</strong></ion-button>
+
+      </ion-card-content>
+    </div>
+  </ion-card> -->
+
+  <div *ngIf="showNoDataImage">
+    <img src="assets/homeNoData.png" style="width: 100%;" alt="" />
+    <h4 style="text-align: center;">No Campaigns Found !</h4>
+  </div>
+</ion-content>

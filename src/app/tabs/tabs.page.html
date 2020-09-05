@@ -1,0 +1,29 @@
+<ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button (click)="homeClicked()" tab='home'>
+        <!-- <ion-label>Discover</ion-label> -->
+        <ion-icon name="{{tabSelected=='home'?'megaphone':'megaphone-outline'}}"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button (click)="storeClicked()" tab='store'>
+        <!-- <ion-label>Profile</ion-label> -->
+        <ion-icon name="{{tabSelected=='store'?'bar-chart':'bar-chart-outline'}}"></ion-icon>
+      </ion-tab-button>
+      <!-- <ion-tab-button (click)="exploreClicked()" tab='explore'>
+
+        <ion-icon name="{{tabSelected=='explore'?'apps':'apps-outline'}}"></ion-icon>
+      </ion-tab-button> <ion-tab-button (click)="notificationClicked()" tab='notification'>
+        
+        <ion-icon name="{{tabSelected=='notification'?'notifications':'notifications-outline'}}"></ion-icon>
+      </ion-tab-button> -->
+      <!-- <ion-tab-button (click)="profileClicked()" tab='profile'>
+        
+        <ion-icon name="{{tabSelected=='profile'?'person':'person-add-outline'}}"></ion-icon>
+      </ion-tab-button> -->
+      <ion-tab-button (click)="settingClicked()" tab='settings'>
+        <!-- <ion-label>Profile</ion-label> -->
+        <ion-icon name="{{tabSelected=='setting'?'settings':'settings-outline'}}"></ion-icon>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

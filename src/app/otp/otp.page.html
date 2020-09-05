@@ -1,0 +1,65 @@
+<ion-content style="text-align: center;">
+  <div style="padding:2rem">
+    <img src="assets/logo.png" alt="">
+    <h1 style="font-family: 'Raleway', sans-serif;">Verify Yourself !</h1>
+    <h3 style="color: rgb(0, 0, 0); font-family: 'Bree Serif', serif;">Enter OTP to Continue</h3>
+  </div>
+  <div style="padding:0rem 2rem">
+    <!-- <ion-item>
+      <ion-label position="floating">One Time Password ( OTP )</ion-label>
+      <ion-input type='number'></ion-input>
+    </ion-item> -->
+
+
+
+    <ion-item>
+      <ion-label position="floating">One Time Password</ion-label>
+      <ion-input [(ngModel)]="otp"></ion-input>
+    </ion-item>
+
+    <!-- <div id="divOuter">
+      <div id="divInner">
+        <input id="partitioned" type="text" maxlength="4" />
+      </div>
+    </div> -->
+
+
+    <!-- <input class="otpInput" type="number" [(ngModel)]="otp">
+
+    <ion-grid style="padding:0px">
+      <ion-row>
+        <ion-col style="border-bottom: 1px solid black;margin:0px 8px">
+
+        </ion-col>
+        <ion-col style="border-bottom: 1px solid black;margin:0px 8px">
+        </ion-col>
+        <ion-col style="border-bottom: 1px solid black;margin:0px 8px">
+        </ion-col>
+        <ion-col style="border-bottom: 1px solid black;margin:0px 8px">
+        </ion-col>
+
+      </ion-row>
+    </ion-grid> -->
+
+
+    <div style="margin: 16px;">
+
+
+      <span *ngIf="time==60 && time!=0"> Time Remaining : 01:00s </span>
+      <span *ngIf="time!=60  && time!=0"> Time Remaining : 00:{{time}}s </span>
+    </div>
+
+
+
+
+
+    <ion-button (click)="resendOTP()" style="margin-top:16px;margin-bottom: 16px;" *ngIf="time==0"
+      (click)="startTimer(true)" expand="block" shape="round">Resend
+      OTP
+    </ion-button>
+
+    <ion-button color='primary' shape='round' (click)="verify()" expand="block">Verify</ion-button>
+  </div>
+
+
+</ion-content>

@@ -1,0 +1,35 @@
+div.background {
+    background: url("https://dashboard.wobb.in/assets/icon-20@3x.png") no-repeat;
+    background-position: center;
+    background-size: 150px;
+    margin: 30px;
+    background-color: #ffffff;
+    opacity: 0.6;
+    text-align: center;
+}
+
+div.background:hover {
+    background: url("https://dashboard.wobb.in/assets/icon-20@3x.png") no-repeat;
+    background-position: center;
+    background-size: 150px;
+    margin: 30px;
+    background-color: #ffffff;
+    opacity: 1;
+    text-align: center;
+}
+
+div.background h3 {
+    // margin: 5%;
+    font-weight: bold;
+    color: #000000;
+}
+
+.togglebtn {
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 0;
+    // margin-right: 2px;
+    height: fit-content;
+    float: right;
+    // width: 22px;
+}

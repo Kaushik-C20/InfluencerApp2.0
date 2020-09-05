@@ -1,0 +1,119 @@
+// .buttonIcon {
+//     color: black;
+//     padding-top: 10px;
+//     padding-left: 10px;
+//     padding-right: 10px;
+// }
+
+.img {
+    width: 100%;
+}
+
+// .details {
+//     display: inline-block;
+//     font-size: small;
+//     color: black;
+// }
+
+.description {
+    color: black;
+    // font-family: 'Tinos', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 0;
+    // padding-bottom: 8px;
+}
+
+.card-content {
+    color: white;
+    font-size: 1rem;
+    // font-family: 'Tinos', serif;
+    font-weight: 700;
+    // border-bottom: 1px solid white;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.flex-container p {
+    margin: 10px;
+    align-items: center;
+}
+
+
+
+// .star {
+//     border: 1px solid black;
+//     border-radius: 100%;
+//     padding: 0px;
+//     margin-left: 10px;
+//     margin-right: 10px;
+//     position: relative;
+//     top: 3px;
+//     width: 14px;
+//     height: 14px;
+// }
+.campaignDetailsItem {
+    display: flex;
+    align-items: center;
+    color: black;
+
+    // margin-left: 16px;
+
+}
+
+.sectionHeading {
+    margin-top: 4px;
+    margin-bottom: 8px;
+    color: black;
+    font-size: 0.9rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+}
+
+.campaignDetailsItem ion-icon {
+    margin-right: 4px;
+}
+
+.liner {
+    border-bottom: 1px solid grey;
+
+}
+
+.campaignDetailsItem ion-icon {}
+
+.product-grid h5 {
+    font-size: 0.85rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: black;
+}
+
+.endorse {
+    --ion-color-danger: #222428;
+    --background-active: var(--ion-color-dark);
+}
+
+.campaignName {
+    font-family: 'Bree Serif', serif;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+    color: black
+}
+
+.brandName {
+    font-family: 'Raleway', sans-serif;
+    color: rgb(36, 36, 36);
+}
+
+.platformImage {
+    // font-size: 1.2rem;
+    width: 2rem;
+    position: absolute;
+    right: 0px;
+    margin-right: 16px;
+}
